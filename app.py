@@ -34,31 +34,7 @@ HTML_TEMPLATE = """
             box-sizing: border-box;
         }
 
-        
-<div style="text-align:center; margin-top: 40px; margin-bottom: 30px;">
-  <a href="https://buymeacoffee.com/oscarschuller" target="_blank" style="
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 12px 20px;
-      border-radius: 50px;
-      background:#ffdd00;
-      color:#222;
-      font-weight:600;
-      text-decoration:none;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size:16px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.15);
-      transition: all 0.2s ease;
-  " 
-  onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 14px rgba(0,0,0,0.22)'"
-  onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)'">
-    ☕ <span>Offrir un café pour soutenir le projet</span>
-  </a>
-</div>
-
-
-	body {
+        body {
             margin: 0;
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -101,6 +77,12 @@ HTML_TEMPLATE = """
             color: var(--text-muted);
         }
 
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .pill-env {
             font-size: 0.76rem;
             padding: 6px 11px;
@@ -112,6 +94,43 @@ HTML_TEMPLATE = """
             gap: 6px;
         }
 
+        .pill-env-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background:#22c55e;
+        }
+
+        .bmc-btn {
+            font-size: 0.76rem;
+            padding: 7px 13px;
+            border-radius: 999px;
+            border: 1px solid rgba(234,179,8,0.9);
+            background: radial-gradient(circle at top left, rgba(234,179,8,0.18), rgba(30,64,175,0.95));
+            color: #fefce8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 12px 30px rgba(15,23,42,0.8);
+            transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+        }
+
+        .bmc-btn span.icon {
+            font-size: 0.9rem;
+        }
+
+        .bmc-btn:hover {
+            filter: brightness(1.05);
+            box-shadow: 0 15px 38px rgba(15,23,42,0.9);
+            transform: translateY(-1px);
+        }
+
+        .bmc-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 10px 26px rgba(15,23,42,0.9);
+        }
+
         main {
             display: grid;
             grid-template-columns: minmax(0, 320px) minmax(0, 1.6fr);
@@ -121,6 +140,11 @@ HTML_TEMPLATE = """
         @media (max-width: 880px) {
             main {
                 grid-template-columns: minmax(0, 1fr);
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: flex-start;
             }
         }
 
@@ -399,9 +423,15 @@ HTML_TEMPLATE = """
                 <h1>Padel Finder – Caen</h1>
                 <p>Compare les créneaux dispo sur les complexes Doinsport, R Padel Arena &amp; Padelshot.</p>
             </div>
-            <div class="pill-env">
-                <span style="width:7px;height:7px;border-radius:999px;background:#22c55e;"></span>
-                <span>Serveur local</span>
+            <div class="header-right">
+                <div class="pill-env">
+                    <span class="pill-env-dot"></span>
+                    <span>Serveur local</span>
+                </div>
+                <a class="bmc-btn" href="https://buymeacoffee.com/oscarschuller" target="_blank" rel="noopener">
+                    <span class="icon">☕</span>
+                    <span>Paye-moi un café</span>
+                </a>
             </div>
         </header>
 
@@ -409,8 +439,8 @@ HTML_TEMPLATE = """
             <!-- Carte de gauche : formulaire -->
             <section class="card">
                 <div class="card-header">
-                    <h2>Paramètres de recherche</h2>
-                    <span>Choisis quand tu veux jouer</span>
+                    <h2>Recherche</h2>
+                    <span></span>
                 </div>
 
                 <form method="post">
@@ -461,11 +491,6 @@ HTML_TEMPLATE = """
                     </div>
 
                     <button type="submit">Lancer la recherche</button>
-
-                    <p class="hint">
-                        Les créneaux proposés commencent exactement à l’heure de début choisie
-                        et doivent tenir entièrement dans la plage (début → fin).
-                    </p>
                 </form>
             </section>
 
@@ -477,7 +502,7 @@ HTML_TEMPLATE = """
                         {% if results %}
                             Dernière recherche effectuée
                         {% else %}
-                            Lance une recherche pour voir les créneaux
+                            En attente d'une recherche
                         {% endif %}
                     </span>
                 </div>
@@ -619,11 +644,6 @@ HTML_TEMPLATE = """
                 </div>
                 {% endif %}
 
-                {% else %}
-                <p style="font-size:0.85rem;color:var(--text-muted);margin-top:4px;">
-                    Choisis une date, une plage horaire et une ou plusieurs durées,
-                    puis clique sur <strong>« Lancer la recherche »</strong>.
-                </p>
                 {% endif %}
             </section>
         </main>
