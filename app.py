@@ -34,7 +34,31 @@ HTML_TEMPLATE = """
             box-sizing: border-box;
         }
 
-        body {
+        
+<div style="text-align:center; margin-top: 40px; margin-bottom: 30px;">
+  <a href="https://buymeacoffee.com/oscarschuller" target="_blank" style="
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 20px;
+      border-radius: 50px;
+      background:#ffdd00;
+      color:#222;
+      font-weight:600;
+      text-decoration:none;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size:16px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+  " 
+  onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 14px rgba(0,0,0,0.22)'"
+  onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.15)'">
+    ☕ <span>Offrir un café pour soutenir le projet</span>
+  </a>
+</div>
+
+
+	body {
             margin: 0;
             min-height: 100vh;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
